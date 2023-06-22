@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/stateManagement/appState';
+import { User } from 'src/app/stateManagement/user';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
- userName : string = "usman";
+ user : User | undefined;
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { 
+    store.select('user').subscribe((x) => { this.user = x;});
+}
 
-  ngOnInit(): void {
+  ngOnInit() : void { 
+    
   }
 
 }

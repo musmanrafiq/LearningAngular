@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from './stateManagement/appState';
+import * as UserActions from './stateManagement/actions/userActions';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularWithNgrx';
+
+  constructor(private store: Store<AppState>){
+    
+  }
+
+  setName() {
+    debugger;
+    this.store.dispatch(new UserActions.SetUser({ name: "jjj" }))
+  }
+
 }
+
